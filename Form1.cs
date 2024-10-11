@@ -9,14 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+
 
 namespace PR7
 {
     public partial class Form1 : Form
     {
-
-        private string connectionString = @"Server=(localdb)\test;Database=Cloth;Trusted_Connection=True;";
+        public string TextBox1Text { get { return textBoxLogin.Text; } set { textBoxLogin.Text = value; } }
+        public string TextBox2Text { get { return textBoxPassword.Text; } set { textBoxPassword.Text = value; } }
+        public static string connectionString = @"Server=(localdb)\test;Database=Cloth;Trusted_Connection=True;";
         public Form1()
         {
             InitializeComponent();
@@ -31,7 +34,7 @@ namespace PR7
         int count = 4;
         bool avtorization = true;
 
-        private void buttonVhod_Click(object sender, EventArgs e)
+        public void buttonVhod_Click(object sender, EventArgs e)
         {
             if (avtorization)
             {
@@ -54,7 +57,7 @@ namespace PR7
 
                                 if (counts > 0)
                                 {
-                                    Vhod(textBoxLogin.Text);
+                                    this.Vhod(textBoxLogin.Text, textBoxPassword.Text);
                                 }
                                 else if (count > 1)
                                 {
@@ -133,7 +136,7 @@ namespace PR7
             }
         }
 
-        private void Vhod(string login)
+        public void Vhod(string login, string password)
         {  
             string role = "";
 
